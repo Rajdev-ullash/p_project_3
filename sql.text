@@ -1,0 +1,30 @@
+create table studentRegistration(
+    id int auto_increment primary key not null,
+    student_name varchar(250),
+    student_id varchar(250),
+    student_email varchar(250),
+    student_pass varchar(250)
+
+)
+create table teacherRegistration(
+    teacher_name varchar(250),
+    teacher_id varchar(250) primary key not null,
+    teacher_email varchar(250),
+    teacher_pass varchar(250)
+
+)
+Insert INTO teacherRegistration(teacher_name,teacher_id, teacher_email, teacher_pass) values ("admin","101","admin@gmail.com","34567") 
+
+create table projectDetails(
+    id int auto_increment primary key not null,
+    project_name varchar(250),
+    project_details varchar(500),
+    project_group_name varchar(500),
+    student1 varchar(200),
+    student2 varchar(200),
+    student3 varchar(200),
+    student4 varchar(200),
+    status_approval varchar(250),
+    FOREIGN KEY (student4) REFERENCES studentRegistration(student_id)
+    
+)
