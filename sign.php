@@ -19,14 +19,15 @@
 	<div class="container" id="container">
 		<div class="form-container sign-up-container">
 
-			<form action="">
+			<form action="" id="register">
 				<h1>Create Account</h1>
-
-				<input type="text" name="name" id="name" placeholder="Name">
-				<input type="text" name="student_id" id="student_id" placeholder="Student Id">
-				<input type="email" name="email" id="email" placeholder="Email">
-				
-				<input type="password" name="pass" id="pass" placeholder="Password">
+				<span id="name"></span>
+				<input type="text" name="name" id="name" placeholder="Name" required>
+				<input type="text" name="student_id" id="student_id" placeholder="Student Id" onInput="checkStudentId()" required>
+				<span id="checkStudentId"></span>
+				<input type="email" name="email" id="email" placeholder="Email" onInput="checkEmail()" required>
+				<span id="check_email"></span>
+				<input type="password" name="pass" id="pass" placeholder="Password" required>
 				
 				<button type="submit" name="submit" id="signup" value="Submit">SignUp</button>
 			</form>
@@ -55,6 +56,8 @@
 		</div>
 	</div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" integrity="sha512-FOhq9HThdn7ltbK8abmGn60A/EMtEzIzv1rvuh+DqzJtSGq8BRdEN0U+j0iKEIffiw/yEtVuladk6rsG4X6Uqg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="validator.js"></script>
 
 	<script type="text/javascript">
 		const signUpButton = document.getElementById('signUp');
@@ -69,7 +72,7 @@
 		});
 	</script>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<script src="./sign.js"></script>
+    <script src="./sign.js"></script>
 
 </body>
 

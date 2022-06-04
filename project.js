@@ -1,3 +1,105 @@
+function projectTitle() {
+  var project_name = $("#project-name").val();
+  console.log(project_name);
+  var datas = { project_name: project_name };
+  console.log(datas);
+  $.ajax({
+    url: "project_title_check.php",
+    method: "POST",
+    data: JSON.stringify(datas),
+
+    success: function (data) {
+      console.log(data);
+      //   "#check_email".html(data);
+      //   console.log(data);
+
+      $("#project_title_checked").html(data);
+
+      //   document.getElementById("checkEmail").html(data);
+    },
+    error: function () {},
+  });
+}
+
+function groupName() {
+  var project_group_name = $("#group-name").val();
+  console.log(project_name);
+  var datas = { project_group_name: project_group_name };
+  console.log(datas);
+  $.ajax({
+    url: "project_group_check.php",
+    method: "POST",
+    data: JSON.stringify(datas),
+
+    success: function (data) {
+      console.log(data);
+      //   "#check_email".html(data);
+      //   console.log(data);
+
+      $("#project_group_checked").html(data);
+
+      //   document.getElementById("checkEmail").html(data);
+    },
+    error: function () {},
+  });
+}
+
+function group_member_checked() {
+  var idArr = $.map($('input[type=text][name="id[]"]'), function (el) {
+    return el.value;
+  });
+  console.log(idArr.length);
+  if (idArr.length == 1) {
+    var student1 = idArr[0];
+    var student2 = "empty";
+    var student3 = "empty";
+
+    var group_project_info = {
+      student1: student1,
+      student2: student2,
+      student3: student3,
+    };
+    console.log(group_project_info);
+  } else if (idArr.length == 2) {
+    var student1 = idArr[0];
+    var student2 = idArr[1];
+    var student3 = "empty";
+
+    var group_project_info = {
+      student1: student1,
+      student2: student2,
+      student3: student3,
+    };
+  } else if (idArr.length == 3) {
+    var student1 = idArr[0];
+    var student2 = idArr[1];
+    var student3 = idArr[2];
+
+    var group_project_info = {
+      student1: student1,
+      student2: student2,
+      student3: student3,
+    };
+  }
+
+  $.ajax({
+    url: "project_group_member_check.php",
+    method: "POST",
+    data: JSON.stringify(group_project_info),
+
+    success: function (data) {
+      console.log(data);
+      //   "#check_email".html(data);
+      //   console.log(data);
+
+      $("#project_member_checked").html(data);
+
+      //   document.getElementById("checkEmail").html(data);
+    },
+    error: function () {},
+  });
+}
+
 function showdata() {
   output = "";
   $.ajax({
@@ -51,29 +153,7 @@ $(document).ready(function () {
     var project_name = $("#project-name").val();
     var project_details = $("#details").val();
     var project_group_name = $("#group-name").val();
-    // var project_info = {
-    //   project_name: project_name,
-    //   project_details: project_details,
-    //   project_group_name: project_group_name,
-    // };
-    // var idArr = $.map($('input[type=text][name="id[]"]'), function(el) { return el.value; });
-    // console.log(idArr.length);
-    // console.log(project_info);
-    // $.ajax({
-    //   url: "test.php",
-    //   method: "POST",
-    //   data: JSON.stringify(project_info),
-    //   success: function (data) {
-    //     console.log(data);
-    //     if (data == 1) {
-    //       alertify.set("notifier", "position", "top-right");
-    //       alertify.success("Successfully Inserted");
-    //     } else {
-    //       alertify.set("notifier", "position", "top-right");
-    //       alertify.error(data);
-    //     }
-    //   },
-    // });
+
     var idArr = $.map($('input[type=text][name="id[]"]'), function (el) {
       return el.value;
     });
@@ -102,6 +182,7 @@ $(document).ready(function () {
           if (data == 1) {
             alertify.set("notifier", "position", "top-right");
             alertify.success("Successfully Inserted");
+            $("#exampleModal").modal("hide");
             $("#myform")[0].reset();
             showdata();
           } else {
@@ -133,6 +214,9 @@ $(document).ready(function () {
           if (data == 1) {
             alertify.set("notifier", "position", "top-right");
             alertify.success("Successfully Inserted");
+            $("#exampleModal").modal("hide");
+            $("#myform")[0].reset();
+            showdata();
           } else {
             alertify.set("notifier", "position", "top-right");
             alertify.error(data);
@@ -162,6 +246,9 @@ $(document).ready(function () {
           if (data == 1) {
             alertify.set("notifier", "position", "top-right");
             alertify.success("Successfully Inserted");
+            $("#exampleModal").modal("hide");
+            $("#myform")[0].reset();
+            showdata();
           } else {
             alertify.set("notifier", "position", "top-right");
             alertify.error(data);

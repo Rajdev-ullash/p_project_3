@@ -39,7 +39,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
             class="btn btn-primary mb-3"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal">
-            Add Course
+            Add Project Idea
           </button>
 
           <!-- Modal -->
@@ -65,15 +65,18 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                 <form action="">
                     <div class="form-group">
                     <label for="">Project Title</label>
-                        <input type="text" class="form-control" name="project-name" id="project-name">
+                        
+                        <input type="text" class="form-control" name="project-name" id="project-name" onInput="projectTitle()" required>
+                        <span id="project_title_checked"></span>
                     </div>
                     <div class="form-group">
                         <label for="">Project Details</label>
-                        <input type="text" class="form-control" name="details" id="details">
+                        <input type="text" class="form-control" name="details" id="details" required>
                     </div>
                     <div class="form-group">
                         <label for="">Group Name</label>
-                        <input type="text" class="form-control" name="group-name" id="group-name">
+                        <input type="text" class="form-control" name="group-name" id="group-name" onInput="groupName()" required>
+                        <span id="project_group_checked"></span>
                     </div>
                     <div class="form-group">
                         <label for="">Select Group Members</label>
@@ -88,6 +91,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                     <div id="members">
 
                     </div>
+                    <span id="project_member_checked"></span>
                 </form>
                 </div>
                 <div class="modal-footer">
@@ -151,6 +155,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                     <div class="form-group">
                     <label for="">Project Title</label>
                         <input type="text" class="form-control" name="project-name" id="project_name">
+                        <!-- <span id="update_project_title_checked"></span> -->
                     </div>
                     <div class="form-group">
                         <label for="">Project Details</label>
@@ -207,7 +212,7 @@ if (isset($_GET['sign']) and $_GET['sign'] == "out") {
                 for (var i=0; i<total_members; i++) {
                     var str = `
                                     <div class="form-group mt-2">
-                                        <input type="text" placeholder="Enter Student ID" class="form-control" name="id[]" id="">
+                                        <input type="text" placeholder="Enter Student ID" class="form-control" name="id[]" id="" onInput="group_member_checked()">
                                     </div>
                                     
                                `;
